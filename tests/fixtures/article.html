@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Why Local-First Software Wins | The Field Notes</title>
+  <meta property="og:title" content="Why Local-First Software Wins">
+  <meta property="og:site_name" content="The Field Notes">
+  <meta property="og:image" content="/img/cover.jpg">
+  <meta property="og:description" content="Sync engines, CRDTs, and why your notes app should work on a plane.">
+  <meta name="author" content="Dana Ruiz">
+  <meta property="article:published_time" content="2026-09-14T08:30:00-05:00">
+</head>
+<body>
+  <header><nav><a href="/">Home</a> <a href="/about">About</a> <a href="/subscribe">Subscribe</a></nav></header>
+  <main>
+    <article>
+      <h1>Why Local-First Software Wins</h1>
+      <p class="byline">By Dana Ruiz</p>
+      <p>Most apps you use every day keep your data on someone else's computer. When the network drops, the app stops being useful, and when the company changes its pricing, you find out how little control you had. Local-first software flips that arrangement so the copy on your device is the real one and the server is a helper.</p>
+      <p>The idea was laid out in the <a href="/papers/local-first?utm_source=feed">Ink &amp; Switch essay</a>, which argued for seven ideals, including fast responses, multi-device sync, offline work, and long-term preservation. A lot has changed since then, mostly because the tooling finally caught up.</p>
+      <h2>What changed</h2>
+      <p>Three things made local-first practical for small teams. Conflict-free replicated data types became fast enough for documents with millions of operations, SQLite showed up in the browser through WebAssembly, and sync engines started shipping as libraries instead of research projects.</p>
+      <img data-src="/img/diagram.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Sync diagram">
+      <table>
+        <thead><tr><th>Approach</th><th>Offline</th><th>Conflicts</th></tr></thead>
+        <tbody>
+          <tr><td>Server-first</td><td>No</td><td>Server decides</td></tr>
+          <tr><td>Local-first</td><td>Yes</td><td>Merged on device</td></tr>
+        </tbody>
+      </table>
+      <p>Here is the smallest version of a merge, written the way most CRDT libraries expose it:</p>
+      <pre><code class="language-ts">const doc = Automerge.merge(local, remote);
+console.log(doc.title);</code></pre>
+      <p>None of this means servers go away. They still back up data, relay changes between devices, and handle sharing. What changes is who has the final say when the network is gone, and for anything you write yourself, that should be you.</p>
+      <p>If you build software for people who take notes, write, or plan, the question worth asking is what happens to their work on a plane, on a train, or after your company is gone. A good answer to that question is becoming a feature people choose products for.</p>
+    </article>
+  </main>
+  <footer><p>© 2026 The Field Notes. <a href="/privacy">Privacy</a></p></footer>
+</body>
+</html>

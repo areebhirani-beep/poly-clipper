@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Save to Poly</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="brand"><img src="icons/32.png" alt="" width="16" height="16" /><span>Save to Poly</span></div>
+    <button class="ghost" id="account" type="button" hidden>Sign out</button>
+  </header>
+
+  <main id="view-loading" class="view center"><div class="spinner" aria-label="Loading"></div></main>
+
+  <main id="view-signin" class="view" hidden>
+    <div class="empty">
+      <h1>Connect your Poly account</h1>
+      <p>Clips are saved through Poly's own MCP server. You sign in on poly.app, and this extension never sees your password.</p>
+      <button class="primary" id="signin" type="button">Connect Poly</button>
+      <p class="error" id="signin-error" hidden></p>
+    </div>
+  </main>
+
+  <main id="view-form" class="view" hidden>
+    <div class="seg" role="tablist" id="modes"></div>
+
+    <section class="card">
+      <div class="card-top">
+        <div class="card-text">
+          <input id="title" class="title" spellcheck="false" aria-label="Title" />
+          <div class="meta" id="meta"></div>
+        </div>
+        <img id="thumb" class="thumb" alt="" hidden />
+      </div>
+      <p class="excerpt" id="excerpt" hidden></p>
+      <p class="notice" id="notice" hidden></p>
+      <details id="preview" hidden>
+        <summary>Markdown <span class="dim" id="preview-size"></span></summary>
+        <pre id="preview-body"></pre>
+      </details>
+    </section>
+
+    <label class="field">
+      <span>Folder</span>
+      <input id="folder" list="folder-options" spellcheck="false" autocomplete="off" />
+      <datalist id="folder-options"></datalist>
+    </label>
+    <div class="chips" id="recent-folders"></div>
+
+    <div class="field" id="tags-field">
+      <span>Tags</span>
+      <div class="tags" id="tags">
+        <input id="tag-input" spellcheck="false" autocomplete="off" placeholder="Add a tag" aria-label="Add a tag" />
+      </div>
+    </div>
+    <div class="chips" id="recent-tags"></div>
+
+    <label class="field" id="note-field">
+      <span>Note</span>
+      <textarea id="note" rows="2" placeholder="Why you saved this (optional)"></textarea>
+    </label>
+
+    <p class="error" id="save-error" hidden></p>
+    <footer class="actions">
+      <button class="primary wide" id="save" type="button"><span id="save-label">Save to Poly</span> <kbd id="save-kbd"></kbd></button>
+    </footer>
+  </main>
+
+  <main id="view-done" class="view" hidden>
+    <div class="empty">
+      <div class="check" aria-hidden="true"></div>
+      <h1>Saved</h1>
+      <code class="path" id="done-path"></code>
+      <p class="error" id="done-warning" hidden></p>
+      <div class="row">
+        <a class="button primary" id="done-open" target="_blank" rel="noopener" hidden>Open in Poly</a>
+        <button class="button" id="done-close" type="button">Close</button>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

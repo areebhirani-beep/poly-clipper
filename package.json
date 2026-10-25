@@ -1,0 +1,35 @@
+{
+  "name": "poly-clipper",
+  "version": "0.1.0",
+  "description": "A web clipper for Poly: save articles as clean Markdown, plus selections, images, links and PDFs, through Poly's own MCP server.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "node scripts/build.ts",
+    "icons": "node scripts/icons.ts",
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "e2e": "node scripts/build.ts --e2e && node scripts/e2e.ts",
+    "check": "npm run typecheck && npm test && npm run e2e && npm run build"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.6.0",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.6",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.5",
+    "@types/turndown": "^5.0.6",
+    "esbuild": "^0.28.2",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.64.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
